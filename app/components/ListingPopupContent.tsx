@@ -20,6 +20,8 @@ export default function ListingPopupContent({ listing }: ListingPopupContentProp
           <br />
         </>
       )}
+      Kontakt: {listing.contact}
+      <br />
       Dodano: {new Date(listing.createdAt).toLocaleDateString()}
     </div>
   );

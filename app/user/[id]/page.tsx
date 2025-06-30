@@ -1,6 +1,7 @@
 import { PrismaClient } from '@/app/generated/prisma';
 import UserProfileCard from '@/app/components/UserProfileCard';
 import { notFound } from 'next/navigation';
+import ListingsTable from '@/app/components/ListingsTable';
 
 const prisma = new PrismaClient();
 
@@ -19,8 +20,10 @@ export default async function UserPage({ params }: { params: { id: string } }) {
       </div>
 
       <div className="flex flex-1 bg-gray-50 divide-x divide-gray-200 text-black">
-        <div className="w-1/3 p-6">Tabela z ogłoszeniami z opcją CRUD</div>
-        <div className="w-1/3 p-6">Tabela z wydarzeniami z opcją CRUD</div>
+        <div className="w-2/3 p-6">
+          <ListingsTable userId={id} />
+        </div>
+        {/* <div className="w-1/3 p-6">Tabela z wydarzeniami z opcją CRUD</div> */}
         <div className="w-1/3 p-6">Tabela z 3 na którą nie ma pomysłu/ Może wydarznia w których bierze się udział</div>
       </div>
     </div>
