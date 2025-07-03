@@ -45,5 +45,11 @@
    "map": {
     "error-downlad-loc": "Błąd pobierania lokalizacji",
     "map-load": "Ładowanie mapy i lokalizacji..."
+   },
+   "schema": {
+    "title-required": "Tytuł jest wymagany",
+    "title-long": "Tytuł jest za długi",
+    "desc-long": "Opis jest za długi",
+    "contact-long": "Kontakt jest za długi"
    }
 }

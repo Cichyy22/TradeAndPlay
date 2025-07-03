@@ -45,5 +45,11 @@
    "map": {
     "error-downlad-loc": "Error getting location",
     "map-load": "Loading map and location..."
+   },
+   "schema": {
+    "title-required": "Title required",
+    "title-long": "Title too long",
+    "desc-long": "Description too long",
+    "contact-long": "Contact too long"
    }
 }

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient, ListingType } from '@/app/generated/prisma';
+import { PrismaClient } from '@/app/generated/prisma';
 import { auth } from "@/auth";
+import { listingSchema } from '@/lib/schema';  // zaimportuj schemat
 
 const prisma = new PrismaClient();
 
@@ -42,23 +43,27 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const session = await auth();
-    const { title, description, contact, type, location } = body;
-
-    const userId = session?.user?.id;
-
-    if (!userId || !title || !type) {
-      return NextResponse.json({ error: 'Brak wymaganych pól' }, { status: 400 });
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
+
+
+    const parsed = listingSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json({ error: parsed.error.errors.map(e => e.message).join(', ') }, { status: 400 });
+    }
+
+    const { title, description, contact, type, location } = parsed.data;
 
     const newListing = await prisma.listing.create({
       data: {
         title,
         description,
         contact,
-        type: type as ListingType,
+        type,
         lat: location?.lat ?? null,
         lng: location?.lng ?? null,
-        userId,
+        userId: session.user.id,
       },
     });
 

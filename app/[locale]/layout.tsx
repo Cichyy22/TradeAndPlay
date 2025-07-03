@@ -18,9 +18,8 @@ export default async function LocaleLayout({
   }
  
   return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider>
+    
+        <NextIntlClientProvider  locale={locale}>
              <div className="h-screen w-screen flex flex-col overflow-hidden">
 <div className="h-12 shrink-0">
          <Navbar />
@@ -31,7 +30,5 @@ export default async function LocaleLayout({
       </div>
      </div>
         </NextIntlClientProvider>
-      </body>
-    </html>
   );
 }
