@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
 import AddListingForm from '@/app/components/AddListingForm';
 import ListingPopupContent from './ListingPopupContent';
+import {useTranslations} from 'next-intl';
 
 const redIcon = new L.Icon({
   iconUrl: 'https://www.svgrepo.com/show/470991/arrow-circle-down.svg',
@@ -23,11 +24,11 @@ const anotherIcon = new L.Icon({
 function LocationHandler({ onSelectLocation }: { onSelectLocation: (latlng: L.LatLng) => void }) {
   useMapEvents({
     contextmenu(e) {
-      onSelectLocation(e.latlng); // desktop
+      onSelectLocation(e.latlng); 
     },
     click(e) {
       if (window.innerWidth < 768) {
-        onSelectLocation(e.latlng); // mobile
+        onSelectLocation(e.latlng); 
       }
     },
   });
@@ -38,7 +39,7 @@ export default function MapView({ distanceKm }: { distanceKm: number }) {
   const [userPosition, setUserPosition] = useState<[number, number] | null>(null);
   const [formPos, setFormPos] = useState<{ lat: number; lng: number } | null>(null);
   const [listings, setListings] = useState<any[]>([]);
-
+  const t = useTranslations();
   useEffect(() => {
     if (typeof window !== 'undefined' && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -47,18 +48,17 @@ export default function MapView({ distanceKm }: { distanceKm: number }) {
           setUserPosition([latitude, longitude]);
         },
         (error) => {
-          console.error('Błąd pobierania lokalizacji:', error);
+          console.error(`${t('map.error-downlad-loc')}: `, error);
           setUserPosition([52.2297, 21.0122]); 
         }
       );
     }
 
-    // Pobierz istniejące ogłoszenia z backendu
     fetch('/api/listing')
       .then(res => res.json())
       .then(data => setListings(data))
       .catch(err => {
-        console.error('Błąd pobierania ogłoszeń:', err);
+        console.error(`${t('listing.error-downlad')}: `, err);
         setListings([]);
       });
   }, []);
@@ -90,7 +90,7 @@ const handleAddListing = (data: {
 }
 
   if (!userPosition) {
-    return <div>Ładowanie mapy i lokalizacji...</div>;
+    return <div>{t('map.map-load')}</div>;
   }
 
   return (
@@ -116,7 +116,7 @@ const handleAddListing = (data: {
           }}
         />
       )}
-      {/* Markery istniejących ogłoszeń */}
+      
       {listings .filter(
             (listing) =>
               listing.lat &&

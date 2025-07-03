@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/table';
 
 import EditListingModal from './EditListingModal';
+import {useTranslations} from 'next-intl';
 
 interface Listing {
   id: string;
@@ -27,16 +28,16 @@ export default function ListingsTable({ userId }: { userId: string }) {
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(false);
   const [editingListing, setEditingListing] = useState<Listing | null>(null);
-
+  const t = useTranslations('listing');
   const fetchListings = async () => {
     setLoading(true);
     try {
       const res = await fetch(`/api/listing?userId=${userId}`);
-      if (!res.ok) throw new Error('Błąd pobierania');
+      if (!res.ok) throw new Error(`${t('error-downlad')}`);
       const data = await res.json();
       setListings(data);
     } catch (error) {
-      alert('Błąd pobierania listy: ' + error);
+      alert(`${t('error-downlad')}: ` + error);
     } finally {
       setLoading(false);
     }
@@ -47,14 +48,14 @@ export default function ListingsTable({ userId }: { userId: string }) {
   }, [userId]);
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Na pewno chcesz usunąć to ogłoszenie?')) return;
+    if (!confirm(`${t('delete-accept')}`)) return;
 
     try {
       const res = await fetch(`/api/listing/${id}`, { method: 'DELETE' });
-      if (!res.ok) throw new Error('Błąd usuwania');
+      if (!res.ok) throw new Error(`${t('error-deleting')}`);
       fetchListings();
     } catch (error) {
-      alert('Błąd podczas usuwania: ' + error);
+      alert(`${t('error-delete')}: ` + error);
     }
   };
 
@@ -67,28 +68,28 @@ export default function ListingsTable({ userId }: { userId: string }) {
       });
       if (!res.ok) {
         const errorData = await res.json();
-        throw new Error(errorData.error || 'Błąd aktualizacji');
+        throw new Error(errorData.error || `${t('error-updating')}`);
       }
       setEditingListing(null);
       fetchListings();
     } catch (error) {
-      alert('Błąd podczas aktualizacji: ' + error);
+      alert(`${t('error-update')}` + error);
     }
   };
 
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold">Ogłoszenia wymiany</h2>
+      <h2 className="text-xl font-semibold">{t('exchange')}</h2>
 
       <div className="overflow-x-auto">
         <Table className="min-w-full">
           <TableHeader>
             <TableRow>
-              <TableHead className="whitespace-nowrap">Tytuł</TableHead>
-              <TableHead className="whitespace-nowrap">Typ</TableHead>
-              <TableHead className="whitespace-nowrap">Kontakt</TableHead>
-              <TableHead className="whitespace-nowrap">Opis</TableHead>
-              <TableHead className="text-right whitespace-nowrap">Akcje</TableHead>
+              <TableHead className="whitespace-nowrap">{t('title')}</TableHead>
+              <TableHead className="whitespace-nowrap">{t('type')}</TableHead>
+              <TableHead className="whitespace-nowrap">{t('contact')}</TableHead>
+              <TableHead className="whitespace-nowrap">{t('desc')}</TableHead>
+              <TableHead className="text-right whitespace-nowrap">{t('action')}</TableHead>
             </TableRow>
           </TableHeader>
 
@@ -96,20 +97,20 @@ export default function ListingsTable({ userId }: { userId: string }) {
             {loading ? (
               <TableRow>
                 <TableCell colSpan={5} className="text-center py-4">
-                  Ładowanie...
+                  {t('load')}
                 </TableCell>
               </TableRow>
             ) : listings.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={5} className="text-center py-4">
-                  Brak ogłoszeń
+                   {t('empty')}
                 </TableCell>
               </TableRow>
             ) : (
               listings.map((listing) => (
                 <TableRow key={listing.id}>
                   <TableCell className="max-w-[160px] truncate">{listing.title}</TableCell>
-                  <TableCell>{listing.type === 'BOOK' ? 'Książka' : 'Gra'}</TableCell>
+                  <TableCell>{listing.type === 'BOOK' ? `${t('book')}` : `${t('game')}`}</TableCell>
                   <TableCell className="max-w-[160px] truncate">{listing.contact}</TableCell>
                   <TableCell className="max-w-[240px] truncate">{listing.description}</TableCell>
                   <TableCell className="text-right space-x-2">
@@ -118,14 +119,14 @@ export default function ListingsTable({ userId }: { userId: string }) {
                       variant="outline"
                       onClick={() => setEditingListing(listing)}
                     >
-                      Edytuj
+                      {t('edit-btn')}
                     </Button>
                     <Button
                       size="sm"
                       variant="destructive"
                       onClick={() => handleDelete(listing.id)}
                     >
-                      Usuń
+                      {t('delete')}
                     </Button>
                   </TableCell>
                 </TableRow>

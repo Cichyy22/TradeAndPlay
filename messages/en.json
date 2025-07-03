@@ -1,0 +1,49 @@
+{
+  "navbar": {
+    "title": "Name",
+    "profile": "Profile",
+    "log-out": "Log out",
+    "log-in": "Log in"
+  },
+  "home": {
+    "range": "Radius",
+    "refresh": "Refresh"
+  },
+   "listing": {
+    "add": "Add",
+    "edit": "Edit announcement",
+    "title": "Title",
+    "desc": "Description",
+    "type": "Type",
+    "contact": "Contact",
+    "book": "Book",
+    "game": "Game",
+    "in-progress": "In progress...",
+    "error": "Error",
+
+    "place-title": "",
+    "place-desc": "",
+    "place-contact": "",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "added": "Added",
+    "action": "Options",
+
+    "load": "Loading...",
+    "empty": "Empty",
+    "exchange": "Exchange Announcements",
+
+    "error-update": "Error while updating",
+    "error-updating": "Error updating",
+    "error-delete": "Error while deleting",
+    "error-deleting": "Error deleting",
+    "delete-accept": "Are you sure you want to delete this?",
+    "error-downlad": "Error downloading",
+    "edit-btn": "Edit"
+  },
+   "map": {
+    "error-downlad-loc": "Error getting location",
+    "map-load": "Loading map and location..."
+   }
+}

@@ -2,17 +2,19 @@
 
 import React from 'react';
 import { Listing } from '@prisma/client';
+import {useTranslations} from 'next-intl';
 
 interface ListingPopupContentProps {
   listing: Listing;
 }
 
 export default function ListingPopupContent({ listing }: ListingPopupContentProps) {
+  const t = useTranslations('listing');
   return (
     <div>
       <strong>{listing.title}</strong>
       <br />
-      Typ: {listing.type}
+     {t('type')}: {listing.type === 'BOOK' ? `${t('book')}` : listing.type === 'GAME' ? `${t('game')}` : listing.type}
       <br />
       {listing.description && (
         <>
@@ -20,9 +22,9 @@ export default function ListingPopupContent({ listing }: ListingPopupContentProp
           <br />
         </>
       )}
-      Kontakt: {listing.contact}
+      {t('contact')}: {listing.contact}
       <br />
-      Dodano: {new Date(listing.createdAt).toLocaleDateString()}
+      {t('added')}: {new Date(listing.createdAt).toLocaleDateString()}
     </div>
   );
 }

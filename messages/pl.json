@@ -1,0 +1,49 @@
+{
+  "navbar": {
+    "title": "Nazwa",
+    "profile": "Profil",
+    "log-out": "Wyloguj",
+    "log-in": "Zaloguj"
+  },
+   "home": {
+    "range": "Zasięg",
+    "refresh": "Odśwież"
+  },
+   "listing": {
+    "add": "Dodaj ogłoszenie",
+    "edit": "Edytuj ogłoszenie",
+    "title": "Tytuł",
+    "desc": "Opis",
+    "type": "Typ",
+    "contact": "Kontakt",
+    "book": "Książka",
+    "game": "Gra",
+    "in-progress": "Dodawanie...", 
+    "error": "Błąd",
+
+    "place-title": "Wpisz tytuł ogłoszenia",
+    "place-desc": "Opisz swoje ogłoszenie",
+    "place-contact": "Podaj kontakt dla zainteresowanych (nr. telefonu, discord itp.)",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "delete": "Usuń",
+    "added": "Dodano",
+    "action": "Akcje",
+
+    "load": "Ładowanie...",
+    "empty": "Brak ogłoszeń",
+    "exchange": "Ogłoszenia wymiany",
+
+    "error-update": "Błąd podczas aktualizacji",
+    "error-updating": "Błąd aktualizacji",
+    "error-delete": "Błąd podczas usuwania",
+    "error-deleting": "Błąd usuwania",
+    "delete-accept": "Na pewno chcesz usunąć to ogłoszenie?",
+    "error-downlad": "Błąd pobierania",
+    "edit-btn": "Edytuj"
+  },
+   "map": {
+    "error-downlad-loc": "Błąd pobierania lokalizacji",
+    "map-load": "Ładowanie mapy i lokalizacji..."
+   }
+}

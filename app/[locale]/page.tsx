@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
+import {useTranslations} from 'next-intl';
 
 const MapView = dynamic(() => import('@/app/components/MapView'), { ssr: false });
 
 export default function HomePage() {
+  const t = useTranslations('home');
   const [distance, setDistance] = useState(5);
   const [refreshKey, setRefreshKey] = useState(0);
 
@@ -18,7 +20,7 @@ export default function HomePage() {
       <MapView key={refreshKey} distanceKm={distance} />
 
       <div className="absolute bottom-4 right-4 bg-white p-3 rounded shadow-md flex items-center gap-2 z-[1000] text-black">
-        <label htmlFor="radius">Zasięg (km):</label>
+        <label htmlFor="radius">{t('range')} (km):</label>
         <input
           id="radius"
           type="number"
@@ -36,7 +38,7 @@ export default function HomePage() {
           title="Odśwież mapę"
           type="button"
         >
-          Odśwież
+          {t('refresh')}
         </button>
       </div>
     </div>

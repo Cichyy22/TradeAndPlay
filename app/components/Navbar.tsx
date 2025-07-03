@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { auth, signOut, signIn } from "@/auth";
 import Image from 'next/image';
+import {getTranslations} from 'next-intl/server';
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navbar = async () => {
+  const t = await getTranslations('navbar');
   const session = await auth();
-  console.log(session);
 
   return (
     <header className="bg-white shadow-md font-work-sans text-gray-900">
@@ -18,12 +20,12 @@ const Navbar = async () => {
               height={32}
               priority
             />
-            <p className="text-2xl font-extrabold tracking-tight">Nazwa</p>
+            <p className="text-2xl font-extrabold tracking-tight">{t('title')}</p>
           </Link>
 
           {session && session.user && (
             <>
-              {/*  dodać dodatkowe linki, np. dashboard itp. */}
+              <LanguageSwitcher/>
             </>
           )}
         </div>
@@ -35,7 +37,7 @@ const Navbar = async () => {
                 href={`/user/${session.user.id}`}
                 className="text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors"
               >
-                Profil
+                {t('profile')}
               </Link>
 
               <form
@@ -48,7 +50,7 @@ const Navbar = async () => {
                   type="submit"
                   className="text-lg font-medium text-red-600 hover:text-red-800 transition-colors"
                 >
-                  Wyloguj
+                  {t('log-out')}
                 </button>
               </form>
             </>
@@ -63,7 +65,7 @@ const Navbar = async () => {
                 type="submit"
                 className="text-lg font-medium text-blue-600 hover:text-blue-800 transition-colors"
               >
-                Zaloguj
+                {t('log-in')}
               </button>
             </form>
           )}
