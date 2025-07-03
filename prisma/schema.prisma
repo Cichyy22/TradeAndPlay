@@ -32,6 +32,8 @@ model User {
   listings    Listing[]
   events      Event[]     @relation("OrganizerEvents")
   participants EventParticipant[]
+
+  acceptedTerms    Boolean         @default(false)
 }
  
 model Account {

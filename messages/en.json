@@ -51,5 +51,16 @@
     "title-long": "Title too long",
     "desc-long": "Description too long",
     "contact-long": "Contact too long"
-   }
+   },
+   "terms": {
+      "title": "Website Terms and Conditions",
+      "paragraph1": "This website is a demonstration and experimental project created solely for educational and demonstration purposes. It does not provide any commercial services and does not generate revenue.",
+      "paragraph2": "By using this website, the user acknowledges that all information and functionalities are provided \"as is\", without any guarantees regarding their performance.",
+      "paragraph3": "The author assumes no responsibility for any damages resulting from the use of this website.",
+      "paragraph4": "Users' personal data is processed solely for the purposes necessary for the operation of the website and is not shared with third parties.",
+      "paragraph5": "The user confirms that they understand the nature of the project and agrees to use the service in accordance with its intended purpose.",
+      "paragraph6": "If you have any questions or concerns, please contact the project author.",
+      "accept": "I Accept",
+      "decline": "I Do Not Accept / Close Terms"
+    }
 }

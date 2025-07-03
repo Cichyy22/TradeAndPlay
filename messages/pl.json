@@ -51,5 +51,16 @@
     "title-long": "Tytuł jest za długi",
     "desc-long": "Opis jest za długi",
     "contact-long": "Kontakt jest za długi"
-   }
+   },
+   "terms": {
+    "title": "Regulamin strony",
+    "paragraph1": "Niniejsza strona internetowa jest projektem pokazowym oraz eksperymentalnym, stworzonym wyłącznie w celach edukacyjnych i demonstracyjnych. Nie świadczy żadnych usług komercyjnych ani nie generuje przychodów.",
+    "paragraph2": "Korzystając z tej strony, użytkownik akceptuje, że wszelkie informacje oraz funkcjonalności są udostępnione „tak jak są”, bez jakichkolwiek gwarancji co do ich działania.",
+    "paragraph3": "Autor nie ponosi odpowiedzialności za ewentualne szkody wynikające z korzystania z tej strony.",
+    "paragraph4": "Dane osobowe użytkowników są przetwarzane wyłącznie w celach niezbędnych do działania strony i nie są udostępniane osobom trzecim.",
+    "paragraph5": "Użytkownik potwierdza, że rozumie charakter projektu i wyraża zgodę na korzystanie z serwisu zgodnie z jego przeznaczeniem.",
+    "paragraph6": "W razie pytań lub wątpliwości prosimy o kontakt z autorem projektu.",
+    "accept": "Akceptuję",
+    "decline": "Nie zgadzam się / Wyłącz regulamin"
+  }
 }

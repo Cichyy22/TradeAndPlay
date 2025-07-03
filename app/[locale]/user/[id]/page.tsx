@@ -7,6 +7,7 @@ const prisma = new PrismaClient();
 
 export default async function UserPage({ params }: { params: { id: string } }) {
   const { id } = params;
+
   const user = await prisma.user.findUnique({
     where: { id },
   });
