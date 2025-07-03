@@ -11,7 +11,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-import EditListingModal from './EditListingModal'; // importuj modal z pliku, gdzie go zapisałeś
+import EditListingModal from './EditListingModal';
 
 interface Listing {
   id: string;
@@ -58,7 +58,6 @@ export default function ListingsTable({ userId }: { userId: string }) {
     }
   };
 
-  // Aktualizacja ogłoszenia (PATCH)
   const handleUpdate = async (updatedListing: Partial<Listing> & { id: string }) => {
     try {
       const res = await fetch(`/api/listing/${updatedListing.id}`, {
@@ -81,50 +80,60 @@ export default function ListingsTable({ userId }: { userId: string }) {
     <div className="space-y-4">
       <h2 className="text-xl font-semibold">Ogłoszenia wymiany</h2>
 
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Tytuł</TableHead>
-            <TableHead>Typ</TableHead>
-            <TableHead>Kontakt</TableHead>
-            <TableHead>Opis</TableHead>
-            <TableHead className="text-right">Akcje</TableHead>
-          </TableRow>
-        </TableHeader>
+      <div className="overflow-x-auto">
+        <Table className="min-w-full">
+          <TableHeader>
+            <TableRow>
+              <TableHead className="whitespace-nowrap">Tytuł</TableHead>
+              <TableHead className="whitespace-nowrap">Typ</TableHead>
+              <TableHead className="whitespace-nowrap">Kontakt</TableHead>
+              <TableHead className="whitespace-nowrap">Opis</TableHead>
+              <TableHead className="text-right whitespace-nowrap">Akcje</TableHead>
+            </TableRow>
+          </TableHeader>
 
-        <TableBody>
-          {loading ? (
-            <TableRow>
-              <TableCell colSpan={5} className="text-center py-4">
-                Ładowanie...
-              </TableCell>
-            </TableRow>
-          ) : listings.length === 0 ? (
-            <TableRow>
-              <TableCell colSpan={5} className="text-center py-4">
-                Brak ogłoszeń
-              </TableCell>
-            </TableRow>
-          ) : (
-            listings.map((listing) => (
-              <TableRow key={listing.id}>
-                <TableCell>{listing.title}</TableCell>
-                <TableCell>{listing.type === 'BOOK' ? 'Książka' : 'Gra'}</TableCell>
-                <TableCell>{listing.contact}</TableCell>
-                <TableCell className="truncate max-w-xs">{listing.description}</TableCell>
-                <TableCell className="text-right space-x-2">
-                  <Button size="sm" variant="outline" onClick={() => setEditingListing(listing)}>
-                    Edytuj
-                  </Button>
-                  <Button size="sm" variant="destructive" onClick={() => handleDelete(listing.id)}>
-                    Usuń
-                  </Button>
+          <TableBody>
+            {loading ? (
+              <TableRow>
+                <TableCell colSpan={5} className="text-center py-4">
+                  Ładowanie...
                 </TableCell>
               </TableRow>
-            ))
-          )}
-        </TableBody>
-      </Table>
+            ) : listings.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={5} className="text-center py-4">
+                  Brak ogłoszeń
+                </TableCell>
+              </TableRow>
+            ) : (
+              listings.map((listing) => (
+                <TableRow key={listing.id}>
+                  <TableCell className="max-w-[160px] truncate">{listing.title}</TableCell>
+                  <TableCell>{listing.type === 'BOOK' ? 'Książka' : 'Gra'}</TableCell>
+                  <TableCell className="max-w-[160px] truncate">{listing.contact}</TableCell>
+                  <TableCell className="max-w-[240px] truncate">{listing.description}</TableCell>
+                  <TableCell className="text-right space-x-2">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => setEditingListing(listing)}
+                    >
+                      Edytuj
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      onClick={() => handleDelete(listing.id)}
+                    >
+                      Usuń
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
+          </TableBody>
+        </Table>
+      </div>
 
       {editingListing && (
         <EditListingModal

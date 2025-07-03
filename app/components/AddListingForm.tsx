@@ -45,6 +45,7 @@ export default function AddListingForm({
   };
 
   return (
+    <div className=" max-w-sm sm:max-w-md p-2 sm:p-4 text-sm space-y-3">
    <form
   onSubmit={handleSubmit}
   className="w-full max-w-md mx-auto bg-white shadow-md rounded-md p-6 space-y-4"
@@ -103,6 +104,6 @@ export default function AddListingForm({
         {loading ? 'Dodawanie...' : 'Dodaj ogłoszenie'}
       </button>
 </form>
-
+</div>
   );
 }

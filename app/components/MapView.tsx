@@ -20,10 +20,15 @@ const anotherIcon = new L.Icon({
   popupAnchor: [1, -34],
 });
 
-function LocationHandler({ onRightClick }: { onRightClick: (latlng: L.LatLng) => void }) {
+function LocationHandler({ onSelectLocation }: { onSelectLocation: (latlng: L.LatLng) => void }) {
   useMapEvents({
     contextmenu(e) {
-      onRightClick(e.latlng);
+      onSelectLocation(e.latlng); // desktop
+    },
+    click(e) {
+      if (window.innerWidth < 768) {
+        onSelectLocation(e.latlng); // mobile
+      }
     },
   });
   return null;
@@ -58,18 +63,21 @@ export default function MapView({ distanceKm }: { distanceKm: number }) {
       });
   }, []);
 
-  const handleAddListing = (data: {
-    title: string;
-    description: string;
-    type: 'BOOK' | 'GAME';
-    location: { lat: number; lng: number };
-  }) => {
-    console.log('📦 Nowe ogłoszenie:', data);
-    setFormPos(null);
-  };
+const handleAddListing = (data: {
+  id: string;
+  title: string;
+  description: string;
+  contact: string;
+  type: 'BOOK' | 'GAME';
+  lat?: number;
+  lng?: number;
+}) => {
+  setListings((prev) => [...prev, data]);
+  setFormPos(null);
+};
 
   function getDistanceKm(lat1: number, lon1: number, lat2: number, lon2: number) {
-  const R = 6371; // promień Ziemi w km
+  const R = 6371; 
   const dLat = ((lat2 - lat1) * Math.PI) / 180;
   const dLon = ((lon2 - lon1) * Math.PI) / 180;
   const a =
@@ -89,14 +97,14 @@ export default function MapView({ distanceKm }: { distanceKm: number }) {
     <MapContainer
       center={userPosition}
       zoom={13}
-      style={{ height: '100vh', width: '100%' }}
+      className="w-full h-[100dvh]" 
     >
       <TileLayer
         attribution='&copy; OpenStreetMap'
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
       />
 
-      <LocationHandler onRightClick={(latlng) => setFormPos({ lat: latlng.lat, lng: latlng.lng })} />
+      <LocationHandler onSelectLocation={(latlng) => setFormPos({ lat: latlng.lat, lng: latlng.lng })} />
       {userPosition && (
         <Circle
           center={userPosition}

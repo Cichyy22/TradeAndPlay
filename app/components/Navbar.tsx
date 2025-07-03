@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { auth, signOut, signIn } from "@/auth";
+import Image from 'next/image';
 
 const Navbar = async () => {
   const session = await auth();
@@ -7,15 +8,22 @@ const Navbar = async () => {
 
   return (
     <header className="bg-white shadow-md font-work-sans text-gray-900">
-      <nav className="container mx-auto flex justify-between items-center px-6 py-4">
+      <nav className="container mx-auto flex justify-between items-center p-2 px-2">
         <div className="flex items-center gap-8">
-          <Link href="/" className="text-2xl font-extrabold tracking-tight hover:text-blue-600 transition-colors">
-            Tu logo
+          <Link href="/" className="flex items-center space-x-2 hover:text-blue-600 transition-colors">
+            <Image
+              src="/book.svg"
+              alt="Logo"
+              width={32}
+              height={32}
+              priority
+            />
+            <p className="text-2xl font-extrabold tracking-tight">Nazwa</p>
           </Link>
 
           {session && session.user && (
             <>
-              {/* Możesz tu dodać dodatkowe linki, np. dashboard itp. */}
+              {/*  dodać dodatkowe linki, np. dashboard itp. */}
             </>
           )}
         </div>

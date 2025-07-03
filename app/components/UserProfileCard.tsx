@@ -26,7 +26,7 @@ export default function UserProfileCard({ user }: { user: User }) {
           <p className="text-sm text-gray-500">{user.email}</p>
         </div>
       </div>
-      <p className="text-sm text-gray-400">Dołączył: {new Date(user.createdAt).toLocaleDateString()}</p>
+      {/* <p className="text-sm text-gray-400">Dołączył: {new Date(user.createdAt).toLocaleDateString()}</p> */}
     </div>
   );
 }

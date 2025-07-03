@@ -38,16 +38,6 @@ export default function HomePage() {
         >
           Odśwież
         </button>
-
-        
-        {/* <button
-          onClick={() => {}}
-          className="bg-gray-300 hover:bg-gray-400 text-black px-3 py-1 rounded"
-          title="Lista"
-          type="button"
-        >
-          Lista
-        </button> */}
       </div>
     </div>
   );
