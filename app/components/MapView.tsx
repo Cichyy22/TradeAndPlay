@@ -8,6 +8,8 @@ import AddListingForm from '@/app/components/AddListingForm';
 import ListingPopupContent from './ListingPopupContent';
 import {useTranslations} from 'next-intl';
 
+import { useSession } from "next-auth/react"
+
 const redIcon = new L.Icon({
   iconUrl: 'https://www.svgrepo.com/show/470991/arrow-circle-down.svg',
   iconSize: [25, 41],
@@ -36,6 +38,7 @@ function LocationHandler({ onSelectLocation }: { onSelectLocation: (latlng: L.La
 }
 
 export default function MapView({ distanceKm }: { distanceKm: number }) {
+  const { data: session, status } = useSession()
   const [userPosition, setUserPosition] = useState<[number, number] | null>(null);
   const [formPos, setFormPos] = useState<{ lat: number; lng: number } | null>(null);
   const [listings, setListings] = useState<any[]>([]);
@@ -138,8 +141,7 @@ const handleAddListing = (data: {
         )
       ))}
 
-      {/* Marker i popup z formularzem do dodawania ogłoszenia */}
-      {formPos && (
+      {session && session?.user?.acceptedTerms == true && status == 'authenticated' && formPos && (
         <Marker icon={anotherIcon} position={[formPos.lat, formPos.lng]}>
           <Popup onClose={() => setFormPos(null)}>
             <AddListingForm

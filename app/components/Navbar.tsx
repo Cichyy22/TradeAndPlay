@@ -7,7 +7,6 @@ import LanguageSwitcher from "./LanguageSwitcher";
 const Navbar = async () => {
   const t = await getTranslations('navbar');
   const session = await auth();
-  console.log(session)
   return (
     <header className="bg-white shadow-md font-work-sans text-gray-900">
       <nav className="container mx-auto flex justify-between items-center p-2 px-2">

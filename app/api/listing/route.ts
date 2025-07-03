@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@/app/generated/prisma';
 import { auth } from "@/auth";
-import { listingSchema } from '@/lib/schema';  // zaimportuj schemat
+import { listingSchema } from '@/lib/schema'; 
 
 const prisma = new PrismaClient();
 
@@ -47,6 +47,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+     if (session?.user?.acceptedTerms == false) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
 
     const parsed = listingSchema.safeParse(body);
     if (!parsed.success) {

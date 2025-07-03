@@ -8,6 +8,9 @@ const prisma = new PrismaClient();
 export async function PATCH(req: Request, { params }: { params: { id: string } }) {
   try {
     const session = await auth();
+    if (session?.user?.acceptedTerms == false) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const listingId = params.id;
@@ -45,6 +48,9 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 export async function DELETE(request: Request, { params }: { params: { id: string } }) {
   try {
     const session = await auth();
+    if (session?.user?.acceptedTerms == false) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const listingId = params.id;
