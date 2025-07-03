@@ -18,7 +18,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       return NextResponse.json({ error: parsed.error.errors.map(e => e.message).join(', ') }, { status: 400 });
     }
 
-    const { title, description, contact, type, location } = parsed.data;
+    const { title, description, contact, type } = parsed.data;
 
     const existing = await prisma.listing.findUnique({ where: { id: listingId } });
     if (!existing || existing.userId !== session.user.id) {
@@ -31,9 +31,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         title,
         description,
         contact,
-        type,
-        lat: location?.lat ?? null,
-        lng: location?.lng ?? null,
+        type
       },
     });
 

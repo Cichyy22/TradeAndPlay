@@ -10,8 +10,6 @@ interface Listing {
   description: string;
   type: 'BOOK' | 'GAME';
   contact: string;
-  lat?: number;
-  lng?: number;
 }
 
 interface EditListingModalProps {
@@ -51,7 +49,7 @@ export default function EditListingModal({ listing, isOpen, onClose, onSave }: E
       title,
       description: description || undefined,
       type,
-      contact: contact || undefined,
+      contact: contact || undefined
     };
 
     const result = listingSchema.partial().safeParse(dataToValidate);
@@ -74,7 +72,7 @@ export default function EditListingModal({ listing, isOpen, onClose, onSave }: E
         title,
         description,
         type,
-        contact,
+        contact
       });
       setLoading(false);
       onClose();
