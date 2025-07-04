@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import {useTranslations} from 'next-intl';
 import { listingSchema } from '@/lib/schema';
 
+import { toast } from 'react-toastify';
+
 interface Listing {
   id: string;
   title: string;
@@ -75,9 +77,14 @@ export default function EditListingModal({ listing, isOpen, onClose, onSave }: E
         contact
       });
       setLoading(false);
+       toast.success(`${t('toast.success-edit')}`, {
+            position: 'bottom-left',
+          });
       onClose();
     } catch (error) {
-      alert(`${t('listing.error')}: ` + (error as Error).message);
+      toast.error(`${t('listing.error')}: ` + (error as Error).message, {
+            position: 'bottom-left',
+          });
       setLoading(false);
     }
   };

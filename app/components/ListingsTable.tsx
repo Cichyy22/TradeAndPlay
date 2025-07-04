@@ -14,6 +14,8 @@ import {
 import EditListingModal from './EditListingModal';
 import {useTranslations} from 'next-intl';
 
+import { toast } from 'react-toastify';
+
 interface Listing {
   id: string;
   title: string;
@@ -28,16 +30,18 @@ export default function ListingsTable({ userId }: { userId: string }) {
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(false);
   const [editingListing, setEditingListing] = useState<Listing | null>(null);
-  const t = useTranslations('listing');
+  const t = useTranslations();
   const fetchListings = async () => {
     setLoading(true);
     try {
       const res = await fetch(`/api/listing?userId=${userId}`);
-      if (!res.ok) throw new Error(`${t('error-downlad')}`);
+      if (!res.ok) throw new Error(`${t('listing.error-downlad')}`);
       const data = await res.json();
       setListings(data);
     } catch (error) {
-      alert(`${t('error-downlad')}: ` + error);
+       toast.error(`${t('listing.error-downlad')}: ` + error, {
+            position: 'bottom-left',
+          });
     } finally {
       setLoading(false);
     }
@@ -48,14 +52,19 @@ export default function ListingsTable({ userId }: { userId: string }) {
   }, [userId]);
 
   const handleDelete = async (id: string) => {
-    if (!confirm(`${t('delete-accept')}`)) return;
+    if (!confirm(`${t('listing.delete-accept')}`)) return;
 
     try {
       const res = await fetch(`/api/listing/${id}`, { method: 'DELETE' });
-      if (!res.ok) throw new Error(`${t('error-deleting')}`);
+      if (!res.ok) throw new Error(`${t('listing.error-deleting')}`);
+       toast.success(`${t('toast.success')}`, {
+            position: 'bottom-left',
+          });
       fetchListings();
     } catch (error) {
-      alert(`${t('error-delete')}: ` + error);
+       toast.error(`${t('listing.error-delete')}: ` + error, {
+            position: 'bottom-left',
+          });
     }
   };
 
@@ -68,28 +77,36 @@ export default function ListingsTable({ userId }: { userId: string }) {
       });
       if (!res.ok) {
         const errorData = await res.json();
-        throw new Error(errorData.error || `${t('error-updating')}`);
+        toast.error(`${t('listing.error-delete')}: `, {
+            position: 'bottom-left',
+          });
+        throw new Error(errorData.error || `${t('listing.error-updating')}`);
       }
       setEditingListing(null);
+      toast.success(`${t('toast.success')}`, {
+            position: 'bottom-left',
+          });
       fetchListings();
     } catch (error) {
-      alert(`${t('error-update')}` + error);
+      toast.error(`${t('listing.error-delete')}: ` + error, {
+            position: 'bottom-left',
+          });
     }
   };
 
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold">{t('exchange')}</h2>
+      <h2 className="text-xl font-semibold">{t('listing.exchange')}</h2>
 
       <div className="overflow-x-auto">
         <Table className="min-w-full">
           <TableHeader>
             <TableRow>
-              <TableHead className="whitespace-nowrap">{t('title')}</TableHead>
-              <TableHead className="whitespace-nowrap">{t('type')}</TableHead>
-              <TableHead className="whitespace-nowrap">{t('contact')}</TableHead>
-              <TableHead className="whitespace-nowrap">{t('desc')}</TableHead>
-              <TableHead className="text-right whitespace-nowrap">{t('action')}</TableHead>
+              <TableHead className="whitespace-nowrap">{t('listing.title')}</TableHead>
+              <TableHead className="whitespace-nowrap">{t('listing.type')}</TableHead>
+              <TableHead className="whitespace-nowrap">{t('listing.contact')}</TableHead>
+              <TableHead className="whitespace-nowrap">{t('listing.desc')}</TableHead>
+              <TableHead className="text-right whitespace-nowrap">{t('listing.action')}</TableHead>
             </TableRow>
           </TableHeader>
 
@@ -97,20 +114,20 @@ export default function ListingsTable({ userId }: { userId: string }) {
             {loading ? (
               <TableRow>
                 <TableCell colSpan={5} className="text-center py-4">
-                  {t('load')}
+                  {t('listing.load')}
                 </TableCell>
               </TableRow>
             ) : listings.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={5} className="text-center py-4">
-                   {t('empty')}
+                   {t('listing.empty')}
                 </TableCell>
               </TableRow>
             ) : (
               listings.map((listing) => (
                 <TableRow key={listing.id}>
                   <TableCell className="max-w-[160px] truncate">{listing.title}</TableCell>
-                  <TableCell>{listing.type === 'BOOK' ? `${t('book')}` : `${t('game')}`}</TableCell>
+                  <TableCell>{listing.type === 'BOOK' ? `${t('listing.book')}` : `${t('listing.game')}`}</TableCell>
                   <TableCell className="max-w-[160px] truncate">{listing.contact}</TableCell>
                   <TableCell className="max-w-[240px] truncate">{listing.description}</TableCell>
                   <TableCell className="text-right space-x-2">
@@ -119,14 +136,14 @@ export default function ListingsTable({ userId }: { userId: string }) {
                       variant="outline"
                       onClick={() => setEditingListing(listing)}
                     >
-                      {t('edit-btn')}
+                      {t('listing.edit-btn')}
                     </Button>
                     <Button
                       size="sm"
                       variant="destructive"
                       onClick={() => handleDelete(listing.id)}
                     >
-                      {t('delete')}
+                      {t('listing.delete')}
                     </Button>
                   </TableCell>
                 </TableRow>

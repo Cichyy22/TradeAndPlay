@@ -5,6 +5,8 @@ import "./globals.css";
 import { SessionProvider } from 'next-auth/react';
 import { Session } from 'next-auth'
 
+import { ToastContainer } from 'react-toastify';
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +41,7 @@ export default function RootLayout({
 
       <div className="flex-1 overflow-hidden">
         {children}
+        <ToastContainer />
       </div>
     </div>
     </SessionProvider>

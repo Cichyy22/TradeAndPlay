@@ -1,6 +1,6 @@
 {
   "navbar": {
-    "title": "Nazwa",
+    "title": "Trade and Play",
     "profile": "Profil",
     "log-out": "Wyloguj",
     "log-in": "Zaloguj"
@@ -62,5 +62,9 @@
     "paragraph6": "W razie pytań lub wątpliwości prosimy o kontakt z autorem projektu.",
     "accept": "Akceptuję",
     "decline": "Nie zgadzam się / Wyłącz regulamin"
-  }
+  },
+    "toast":{
+      "success": "Sukces",
+      "success-edit": "Edytowano pomyślnie"
+    }
 }

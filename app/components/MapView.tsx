@@ -10,6 +10,8 @@ import {useTranslations} from 'next-intl';
 
 import { useSession } from "next-auth/react"
 
+import { toast } from 'react-toastify';
+
 const redIcon = new L.Icon({
   iconUrl: 'https://www.svgrepo.com/show/470991/arrow-circle-down.svg',
   iconSize: [25, 41],
@@ -51,7 +53,9 @@ export default function MapView({ distanceKm }: { distanceKm: number }) {
           setUserPosition([latitude, longitude]);
         },
         (error) => {
-          console.error(`${t('map.error-downlad-loc')}: `, error);
+           toast.error(`${t('map.error-downlad-loc')}: ` + error, {
+                position: 'bottom-left',
+              });
           setUserPosition([52.2297, 21.0122]); 
         }
       );
@@ -61,6 +65,9 @@ export default function MapView({ distanceKm }: { distanceKm: number }) {
       .then(res => res.json())
       .then(data => setListings(data))
       .catch(err => {
+        toast.error(`${t('listing.error-downlad')}: ` +err, {
+                position: 'bottom-left',
+              });
         console.error(`${t('listing.error-downlad')}: `, err);
         setListings([]);
       });

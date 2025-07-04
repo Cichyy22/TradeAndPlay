@@ -1,6 +1,6 @@
 {
   "navbar": {
-    "title": "Name",
+    "title": "Trade and Play",
     "profile": "Profile",
     "log-out": "Log out",
     "log-in": "Log in"
@@ -62,5 +62,9 @@
       "paragraph6": "If you have any questions or concerns, please contact the project author.",
       "accept": "I Accept",
       "decline": "I Do Not Accept / Close Terms"
+    },
+    "toast":{
+      "success": "Success",
+      "success-edit": "Edited successfully"
     }
 }
