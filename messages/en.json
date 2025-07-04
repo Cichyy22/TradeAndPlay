@@ -66,5 +66,22 @@
     "toast":{
       "success": "Success",
       "success-edit": "Edited successfully"
-    }
+    },
+     "root": {
+    "title": "Trade and Play | Free ads",
+    "description": "A local map for ads and trades. An educational project.",
+    "opengraphTitle": "Trade and Play | Classifieds on the map",
+    "opengraphDescription": "Find ads in your neighborhood!",
+    "siteName": "Trade and Play",
+    "imageAlt": "Trade and Play"
+  },
+  "user": {
+    "profileTitle": "{name} | Trade and Play",
+    "profileDescription": "View the profile and listings of {name}.",
+    "profileImageAlt": "{name} - profile"
+  },
+  "robots": {
+    "index": "true",
+    "follow": "true"
+  }
 }

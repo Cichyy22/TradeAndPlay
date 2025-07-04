@@ -14,9 +14,7 @@ export default function HomePage() {
   const [showTermsModal, setShowTermsModal] = useState(false);
   const [checkingTerms, setCheckingTerms] = useState(true);
 
-  const refreshMap = () => {
-    setRefreshKey((prev) => prev + 1);
-  };
+  const refreshMap = () => setRefreshKey((prev) => prev + 1);
 
   useEffect(() => {
     async function checkAcceptedTerms() {
@@ -30,7 +28,7 @@ export default function HomePage() {
         const data = await res.json();
         if (!data.acceptedTerms) setShowTermsModal(true);
       } catch (e) {
-        console.log(e)
+        console.log(e);
         setShowTermsModal(true);
       } finally {
         setCheckingTerms(false);
@@ -44,7 +42,7 @@ export default function HomePage() {
       const res = await fetch('/api/user/accepted-terms', { method: 'POST' });
       if (res.ok) {
         setShowTermsModal(false);
-        localStorage.removeItem('termsDeclined'); 
+        localStorage.removeItem('termsDeclined');
       } else {
         alert(`${t('listing.error')}`);
       }
@@ -58,15 +56,16 @@ export default function HomePage() {
     setShowTermsModal(false);
   };
 
-  if (checkingTerms) {
-    return <div>{t('listing.load')}</div>;
-  }
+  if (checkingTerms) return <div>{t('listing.load')}</div>;
 
   return (
-    <div className="h-full w-full relative">
+    <main className="h-full w-full relative" role="main">
       <MapView key={refreshKey} distanceKm={distance} />
 
-      <div className="absolute bottom-4 right-4 bg-white p-3 rounded shadow-md flex items-center gap-2 z-[1000] text-black">
+      <section
+        aria-label={t('home.range')}
+        className="absolute bottom-4 right-4 bg-white p-3 rounded shadow-md flex items-center gap-2 z-[1000] text-black"
+      >
         <label htmlFor="radius">{t('home.range')} (km):</label>
         <input
           id="radius"
@@ -88,9 +87,11 @@ export default function HomePage() {
         >
           {t('home.refresh')}
         </button>
-      </div>
+      </section>
 
-      {showTermsModal && <TermsModal onAccept={acceptTerms} onDecline={declineTerms} />}
-    </div>
+      {showTermsModal && (
+        <TermsModal onAccept={acceptTerms} onDecline={declineTerms} />
+      )}
+    </main>
   );
 }

@@ -66,5 +66,22 @@
     "toast":{
       "success": "Sukces",
       "success-edit": "Edytowano pomyślnie"
-    }
+    },
+    "root": {
+    "title": "Trade and Play | Darmowe ogłoszenia",
+    "description": "Lokalna mapa ogłoszeń, wymiany i sprzedaży. Projekt edukacyjny.",
+    "opengraphTitle": "Trade and Play | Ogłoszenia na mapie",
+    "opengraphDescription": "Znajdź ogłoszenia w swojej okolicy!",
+    "siteName": "Trade and Play",
+    "imageAlt": "Trade and Play"
+  },
+  "user": {
+    "profileTitle": "{name} | Trade and Play",
+    "profileDescription": "Zobacz profil i ogłoszenia użytkownika {name}.",
+    "profileImageAlt": "{name} - profil"
+  },
+  "robots": {
+    "index": "true",
+    "follow": "true"
+  }
 }
