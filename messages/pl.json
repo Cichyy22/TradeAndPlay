@@ -83,5 +83,38 @@
   "robots": {
     "index": "true",
     "follow": "true"
+  },
+  "event": {
+    "title": "Wydarzenia",
+    "your": "Twoje wydarzenia",
+    "joined": "Dołączone wydarzenia",
+    "name": "Nazwa",
+    "date": "Data",
+    "location": "Lokalizacja",
+    "actions": "Akcje",
+    "edit": "Edytuj",
+    "delete": "Usuń",
+    "leave": "Opuść",
+    "empty": "Brak wydarzeń do wyświetlenia.",
+    "error-downloading": "Błąd podczas pobierania wydarzeń",
+    "leave-confirm": "Czy na pewno chcesz opuścić to wydarzenie?",
+    "leave-error": "Wystąpił błąd podczas opuszczania wydarzenia",
+    "delete-confirm": "Czy na pewno chcesz usunąć to wydarzenie?",
+    "delete-error": "Wystąpił błąd podczas usuwania wydarzenia",
+    "add-event": "Dodaj wydarzenie",
+    "edit-event": "Edytuj wydarzenie",
+    "description": "Opis",
+    "add": "Dodaj",
+    "in-progress": "Wysyłanie...",
+    "success": "Operacja zakończona sukcesem",
+    "error": "Wystąpił błąd",
+    "cancel": "Anuluj",
+    "capacity": "Pojemność",
+    "validation": {
+      "name": "Nazwa jest wymagana",
+      "date": "Data jest wymagana",
+      "location": "Lokalizacja jest wymagana",
+      "capacity": "Pojemność musi być liczbą"
+    }
   }
 }

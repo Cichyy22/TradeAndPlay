@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@/app/generated/prisma';
 import { auth } from "@/auth";
 import { listingSchema } from '@/lib/schema';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/prisma';
 
 export async function PATCH(req: Request, { params }: { params: { id: string } }) {
   try {
@@ -13,7 +11,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     }
     if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-    const listingId = params.id;
+    const listingId = await params.id;
     const body = await req.json();
 
     const parsed = listingSchema.safeParse(body);
@@ -53,7 +51,7 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
     }
     if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-    const listingId = params.id;
+    const listingId = await params.id;
 
     const existing = await prisma.listing.findUnique({ where: { id: listingId } });
     if (!existing || existing.userId !== session.user.id) {

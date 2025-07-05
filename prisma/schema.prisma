@@ -120,7 +120,7 @@ model Event {
   location      String
   lat           Float?
   lng           Float?
-  capacity      Int       // limit uczestników
+  capacity      Int       
   createdAt     DateTime  @default(now())
 
   organizer     User      @relation("OrganizerEvents", fields: [organizerId], references: [id])
@@ -140,5 +140,5 @@ model EventParticipant {
 
   joinedAt  DateTime @default(now())
 
-  @@unique([userId, eventId]) // użytkownik może dołączyć tylko raz
+  @@unique([userId, eventId]) 
 }

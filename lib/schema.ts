@@ -10,3 +10,13 @@ export const listingSchema = z.object({
     lng: z.number(),
   }).nullable().optional(),
 });
+
+export const eventSchema = z.object({
+  name: z.string().min(1, { message: 'validation.name' }),
+  date: z.string().min(1, { message: 'validation.date' }),
+  location: z.string().min(1, { message: 'validation.location' }),
+  description: z.string().optional(),
+  capacity: z.number().min(1, { message: 'validation.capacity' }),
+  lat: z.number().optional(),
+  lng: z.number().optional(),
+});

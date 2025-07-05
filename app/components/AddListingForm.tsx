@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import {useTranslations} from 'next-intl';
-// import { z } from 'zod';
 import { listingSchema } from '@/lib/schema';
 
 import { toast } from 'react-toastify';

@@ -1,13 +1,13 @@
-import { PrismaClient } from '@/app/generated/prisma';
 import UserProfileCard from '@/app/components/UserProfileCard';
 import ListingsTable from '@/app/components/ListingsTable';
 import { auth } from '@/auth';
-
-const prisma = new PrismaClient();
+import EventsTable from '@/app/components/EventTable';
+import { prisma } from '@/prisma';
 
 export default async function UserPage({ params }: { params: { id: string } }) {
+  const { id } = await params;
   const session = await auth();
-  const userId = params.id;
+  const userId = id;
 
   const user = await prisma.user.findUnique({
     where: { id: userId },
@@ -25,15 +25,12 @@ export default async function UserPage({ params }: { params: { id: string } }) {
 
       {session.user?.acceptedTerms === true ? (
         <div className="flex flex-col md:flex-row flex-1 bg-gray-50 divide-y md:divide-y-0 md:divide-x divide-gray-200 text-black">
-          <div className="w-full md:w-2/3 p-4 md:p-6">
+          <div className="w-full md:w-1/2 p-4 md:p-6">
             <ListingsTable userId={user.id} />
           </div>
 
-          <div className="w-full md:w-1/3 p-4 md:p-6">
-            <div className="text-sm text-gray-600">
-              <p className="mb-2 font-semibold">Wydarzenia</p>
-              <p className="text-gray-500">wydarzenia</p>
-            </div>
+          <div className="w-full md:w-1/2 p-4 md:p-6">
+              <EventsTable userId={user.id} />
           </div>
         </div>
       ) : (

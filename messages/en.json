@@ -83,5 +83,38 @@
   "robots": {
     "index": "true",
     "follow": "true"
+  },
+  "event": {
+    "title": "Events",
+    "your": "Your Events",
+    "joined": "Joined Events",
+    "name": "Name",
+    "date": "Date",
+    "location": "Location",
+    "actions": "Actions",
+    "edit": "Edit",
+    "delete": "Delete",
+    "leave": "Leave",
+    "empty": "No events to display.",
+    "error-downloading": "Error downloading events",
+    "leave-confirm": "Are you sure you want to leave this event?",
+    "leave-error": "An error occurred while leaving the event",
+    "delete-confirm": "Are you sure you want to delete this event?",
+    "delete-error": "An error occurred while deleting the event",
+    "add-event": "Add Event",
+    "edit-event": "Edit Event",
+    "description": "Description",
+    "add": "Add",
+    "in-progress": "Submitting...",
+    "success": "Operation completed successfully",
+    "error": "An error occurred",
+    "cancel": "Cancel",
+    "capacity": "Capacity",
+    "validation": {
+      "name": "Name is required",
+      "date": "Date is required",
+      "location": "Location is required",
+      "capacity": "Capacity is number"
+    }
   }
 }
