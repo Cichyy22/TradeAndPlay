@@ -19,12 +19,28 @@ export async function GET(req: NextRequest) {
 
   const createdEvents = await prisma.event.findMany({
     where: { organizerId: userId },
-    include: { participants: true },
+    include: {
+      participants: {
+        include: {
+          user: {
+            select: { id: true, email: true } // tylko potrzebne pola
+          }
+        }
+      }
+    },
   });
 
   const participatingEvents = await prisma.event.findMany({
     where: { participants: { some: { userId } } },
-    include: { participants: true },
+    include: {
+      participants: {
+        include: {
+          user: {
+            select: { id: true, email: true } // tylko potrzebne pola
+          }
+        }
+      }
+    },
   });
 
   return NextResponse.json({ createdEvents, participatingEvents });

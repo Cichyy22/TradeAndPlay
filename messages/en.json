@@ -112,6 +112,7 @@
     "capacity": "Capacity",
     "join": "Join",
     "loading": "Loading...",
+    "participants": "Participants",
     "validation": {
       "name": "Name is required",
       "date": "Date is required",

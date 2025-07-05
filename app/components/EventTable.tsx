@@ -14,6 +14,18 @@ import { useTranslations } from 'next-intl';
 import { toast } from 'react-toastify';
 import EventForm from './EventForm';
 
+interface User {
+  id: string;
+  email: string;
+}
+
+interface Participant {
+  id: string;
+  userId: string;
+  user: User; // dodajemy user z email
+  joinedAt: string;
+}
+
 interface EventType {
   id: string;
   name: string;
@@ -23,6 +35,7 @@ interface EventType {
   isPrivate?: boolean;
   capacity?: number;
   organizerId: string;
+  participants?: Participant[]; // teraz z user.email
 }
 
 interface EventsTableProps {
@@ -88,6 +101,11 @@ export default function EventsTable({ userId }: EventsTableProps) {
     fetchEvents();
   }, [userId]);
 
+  const renderParticipantsEmails = (participants?: Participant[]) => {
+    if (!participants || participants.length === 0) return '-';
+    return participants.map((p) => p.user.email).join(', ');
+  };
+
   return (
     <div className="space-y-8">
       {events.createdEvents.length > 0 && (
@@ -99,6 +117,7 @@ export default function EventsTable({ userId }: EventsTableProps) {
                 <TableHead>{t('event.name')}</TableHead>
                 <TableHead>{t('event.date')}</TableHead>
                 <TableHead>{t('event.location')}</TableHead>
+                <TableHead>{t('event.participants')}</TableHead>
                 <TableHead className="text-right">{t('event.actions')}</TableHead>
               </TableRow>
             </TableHeader>
@@ -108,9 +127,14 @@ export default function EventsTable({ userId }: EventsTableProps) {
                   <TableCell>{event.name}</TableCell>
                   <TableCell>{new Date(event.date).toLocaleString()}</TableCell>
                   <TableCell>{event.location}</TableCell>
+                  <TableCell>{renderParticipantsEmails(event.participants)}</TableCell> 
                   <TableCell className="text-right space-x-2">
-                    <Button size="sm" variant="outline" onClick={() => setEditingEvent(event)}>
-                        {t('event.edit')}
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => setEditingEvent(event)}
+                    >
+                      {t('event.edit')}
                     </Button>
                     <Button
                       size="sm"
@@ -127,7 +151,6 @@ export default function EventsTable({ userId }: EventsTableProps) {
         </>
       )}
 
-      
       {events.participatingEvents.length > 0 && (
         <>
           <h3 className="text-lg font-medium">{t('event.joined')}</h3>
@@ -137,6 +160,7 @@ export default function EventsTable({ userId }: EventsTableProps) {
                 <TableHead>{t('event.name')}</TableHead>
                 <TableHead>{t('event.date')}</TableHead>
                 <TableHead>{t('event.location')}</TableHead>
+                <TableHead>{t('event.participants')}</TableHead> 
                 <TableHead className="text-right">{t('event.actions')}</TableHead>
               </TableRow>
             </TableHeader>
@@ -146,8 +170,13 @@ export default function EventsTable({ userId }: EventsTableProps) {
                   <TableCell>{event.name}</TableCell>
                   <TableCell>{new Date(event.date).toLocaleString()}</TableCell>
                   <TableCell>{event.location}</TableCell>
+                  <TableCell>{renderParticipantsEmails(event.participants)}</TableCell>
                   <TableCell className="text-right">
-                    <Button size="sm" variant="destructive" onClick={() => handleLeave(event.id)}>
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      onClick={() => handleLeave(event.id)}
+                    >
                       {t('event.leave')}
                     </Button>
                   </TableCell>
@@ -157,19 +186,19 @@ export default function EventsTable({ userId }: EventsTableProps) {
           </Table>
         </>
       )}
+
       {editingEvent && (
         <EventForm
-            isEdit
-            initialData={editingEvent}
-            onClose={() => setEditingEvent(null)}
-            onSubmit={() => {
+          isEdit
+          initialData={editingEvent}
+          onClose={() => setEditingEvent(null)}
+          onSubmit={() => {
             setEditingEvent(null);
             fetchEvents();
-            }}
+          }}
         />
-        )}
+      )}
 
-     
       {!loading &&
         events.createdEvents.length === 0 &&
         events.participatingEvents.length === 0 && (
