@@ -110,6 +110,8 @@
     "error": "An error occurred",
     "cancel": "Cancel",
     "capacity": "Capacity",
+    "join": "Join",
+    "loading": "Loading...",
     "validation": {
       "name": "Name is required",
       "date": "Date is required",

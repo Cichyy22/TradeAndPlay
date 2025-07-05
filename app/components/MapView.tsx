@@ -83,19 +83,16 @@ export default function MapView({ distanceKm }: { distanceKm: number }) {
         console.error(`${t('listing.error-downlad')}: `, err);
         setListings([]);
       });
-      if(session){fetchEvents();}
+      fetchEvents();
       
   }, []);
 
   const fetchEvents = async () => {
   try {
-    const res = await fetch('/api/event');
+    const res = await fetch('/api/event?all=true');
     if (!res.ok) throw new Error('Failed to fetch');
-
-    const { createdEvents, participatingEvents } = await res.json();
-
-    const mergedEvents = [...createdEvents, ...participatingEvents];
-      setEvents(mergedEvents);
+    const mergedEvents = await res.json();
+      setEvents(mergedEvents.events);
 
   } catch (err) {
     toast.error(`${t('listing.error-downlad')}: ${err}`, {
@@ -122,6 +119,7 @@ const handleAddListing = (data: {
 const handleAddEvent = async () => {
     setFormPos(null);
     toast.success(t('toast.success'), { position: 'bottom-left' });
+    await fetchEvents();
   };
 
   function getDistanceKm(lat1: number, lon1: number, lat2: number, lon2: number) {

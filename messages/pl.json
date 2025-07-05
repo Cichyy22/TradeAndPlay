@@ -110,6 +110,8 @@
     "error": "Wystąpił błąd",
     "cancel": "Anuluj",
     "capacity": "Pojemność",
+    "join": "Dołącz",
+    "loading": "Ładowanie...",
     "validation": {
       "name": "Nazwa jest wymagana",
       "date": "Data jest wymagana",

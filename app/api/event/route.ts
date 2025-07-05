@@ -6,9 +6,16 @@ import { prisma } from '@/prisma';
 
 export async function GET(req: NextRequest) {
   const session = await auth();
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-
+  // if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const url = new URL(req.url);
   const userId = session?.user?.id;
+  const all = url.searchParams.get('all');
+   if (all === 'true') {
+    const events = await prisma.event.findMany({
+      orderBy: { createdAt: 'desc' },
+    });
+    return NextResponse.json({ events });
+  }
 
   const createdEvents = await prisma.event.findMany({
     where: { organizerId: userId },
