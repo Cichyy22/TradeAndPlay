@@ -75,12 +75,15 @@ export default function MapView({ distanceKm }: { distanceKm: number }) {
 
     fetch('/api/listing')
       .then(res => res.json())
-      .then(data => setListings(data))
+      .then(data => {
+        if (Array.isArray(data)) {
+          setListings(data);
+        } else {
+          setListings([]);
+        }
+      })
       .catch(err => {
-        toast.error(`${t('listing.error-downlad')}: ` +err, {
-                position: 'bottom-left',
-              });
-        console.error(`${t('listing.error-downlad')}: `, err);
+        toast.error(`${t('listing.error-download')}: ` + err, { position: 'bottom-left' });
         setListings([]);
       });
       fetchEvents();
@@ -92,7 +95,11 @@ export default function MapView({ distanceKm }: { distanceKm: number }) {
     const res = await fetch('/api/event?all=true');
     if (!res.ok) throw new Error('Failed to fetch');
     const mergedEvents = await res.json();
-      setEvents(mergedEvents.events);
+     if (Array.isArray(mergedEvents.events)) {
+          setEvents(mergedEvents.events);
+        } else {
+          setEvents([]);
+        }
 
   } catch (err) {
     toast.error(`${t('listing.error-downlad')}: ${err}`, {
@@ -102,6 +109,7 @@ export default function MapView({ distanceKm }: { distanceKm: number }) {
     setEvents([]);
   }
 };
+
 
 const handleAddListing = (data: {
   id: string;
