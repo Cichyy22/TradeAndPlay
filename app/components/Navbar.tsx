@@ -22,11 +22,9 @@ const Navbar = async () => {
             <h1 className="hidden sm:block text-2xl font-extrabold tracking-tight">{t('title')}</h1>
           </Link>
 
-          {session && session.user && (
-            <>
+          
               <LanguageSwitcher/>
-            </>
-          )}
+            
         </div>
 
         <div className="flex items-center gap-6">

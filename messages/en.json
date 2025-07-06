@@ -7,7 +7,8 @@
   },
   "home": {
     "range": "Radius",
-    "refresh": "Refresh"
+    "refresh": "Refresh",
+    "instructions-title": "Instruction"
   },
    "listing": {
     "add": "Add",
@@ -124,5 +125,13 @@
         "title": "Page not found",
         "description": "The page you are looking for might have been removed or does not exist.",
         "back-button": "Go back home"
-      }
+      },
+    "instructions":{
+         "title": "How to use",
+          "step1": "To access all features, you must log in and accept the terms of service.",
+          "step2": "After accepting the terms, you can add listings by right-clicking on the map to choose a location, then clicking the arrow with the left mouse button.",
+          "step3": "In your profile tab, you can manage your listings and events.",
+          "step4": "If you're unable to add a listing after accepting the terms, try refreshing the map or the page.",
+          "close": "Close"
+        }
 }

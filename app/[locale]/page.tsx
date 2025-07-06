@@ -6,6 +6,8 @@ import { useTranslations } from 'next-intl';
 import TermsModal from '@/app/components/TermsModal';
 import { useSession } from "next-auth/react"
 
+import InstructionModal from '@/app/components/InstructionModal';
+
 const MapView = dynamic(() => import('@/app/components/MapView'), { ssr: false });
 
 export default function HomePage() {
@@ -16,6 +18,8 @@ export default function HomePage() {
   const [checkingTerms, setCheckingTerms] = useState(true);
 
   const { data: session } = useSession()
+  const [showInstruction, setShowInstruction] = useState(false);
+
 
   const refreshMap = () => setRefreshKey((prev) => prev + 1);
 
@@ -67,6 +71,13 @@ export default function HomePage() {
   return (
     <main className="h-full w-full relative" role="main">
       <MapView key={refreshKey} distanceKm={distance} />
+      <button
+        onClick={() => setShowInstruction(true)}
+        className="absolute top-4 right-4 z-[1001] bg-blue-600 text-white font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-blue-700"
+        title={t('home.instructions-title')}
+      >
+        i
+      </button>
 
       <section
         aria-label={t('home.range')}
@@ -99,6 +110,10 @@ export default function HomePage() {
       {showTermsModal && session && (
         <TermsModal onAccept={acceptTerms} onDecline={declineTerms} />
       )}
+
+      {showInstruction && (
+          <InstructionModal onClose={() => setShowInstruction(false)} />
+        )}
     </main>
   );
 }

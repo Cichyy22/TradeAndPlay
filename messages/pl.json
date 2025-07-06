@@ -7,7 +7,8 @@
   },
    "home": {
     "range": "Zasięg",
-    "refresh": "Odśwież"
+    "refresh": "Odśwież",
+    "instructions-title": "Instrukcja"
   },
    "listing": {
     "add": "Dodaj ogłoszenie",
@@ -124,5 +125,13 @@
         "title": "Nie znaleziono strony",
         "description": "Strona, której szukasz, mogła zostać usunięta lub nie istnieje.",
         "back-button": "Wróć do strony głównej"
-      }
+      },
+    "instructions":{  
+           "title": "Jak korzystać",
+            "step1": "Aby korzystać ze wszystkich funkcji, należy się zalogować i zaakceptować regulamin.",
+            "step2": "Po zaakceptowaniu regulaminu możesz dodawać ogłoszenia, wybierając miejsce prawym przyciskiem myszy, a następnie klikając strzałkę lewym przyciskiem.",
+            "step3": "W zakładce profilu możesz zarządzać swoimi ogłoszeniami i wydarzeniami.",
+            "step4": "Jeśli po zaakceptowaniu regulaminu nie możesz dodać ogłoszenia, odśwież mapę lub stronę.",
+            "close": "Zamknij"
+        }
 }
