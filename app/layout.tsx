@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: t('opengraphTitle'),
       description: t('opengraphDescription'),
-      url: "https://example.com", //change
+      url: "https://trade-and-play.vercel.app", 
       siteName: "Trade and Play",
       images: [
         {
@@ -37,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
     },
     robots: { index: true, follow: true },
-    metadataBase: new URL('https://example.com'), //change
+    metadataBase: new URL('https://trade-and-play.vercel.app'), 
   };
 }
 

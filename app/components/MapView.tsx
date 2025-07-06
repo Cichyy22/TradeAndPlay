@@ -65,12 +65,13 @@ export default function MapView({ distanceKm }: { distanceKm: number }) {
           const { latitude, longitude } = position.coords;
           setUserPosition([latitude, longitude]);
         },
-        (error) => {
-           toast.error(`${t('map.error-downlad-loc')}: ` + error, {
-                position: 'bottom-left',
-              });
+       (error) => {
+          toast.error(`${t('map.error-downlad-loc')}: ${error.message}`, {
+            position: 'bottom-left',
+          });
           setUserPosition([52.2297, 21.0122]); 
         }
+
       );
     }
 

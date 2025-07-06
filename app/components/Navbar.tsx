@@ -9,7 +9,7 @@ const Navbar = async () => {
   const session = await auth();
   return (
     <header className="bg-white shadow-md font-work-sans text-gray-900">
-      <nav className="container mx-auto flex justify-between items-center p-2 px-2">
+      <nav className="w-full flex justify-between items-center px-4 py-2">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center space-x-2 hover:text-blue-600 transition-colors">
             <Image
@@ -19,7 +19,7 @@ const Navbar = async () => {
               height={32}
               priority
             />
-            <p className="text-2xl font-extrabold tracking-tight">{t('title')}</p>
+            <p className="hidden sm:block text-2xl font-extrabold tracking-tight">{t('title')}</p>
           </Link>
 
           {session && session.user && (

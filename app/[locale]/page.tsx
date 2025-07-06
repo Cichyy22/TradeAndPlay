@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import TermsModal from '@/app/components/TermsModal';
+import { useSession } from "next-auth/react"
 
 const MapView = dynamic(() => import('@/app/components/MapView'), { ssr: false });
 
@@ -13,6 +14,8 @@ export default function HomePage() {
   const [refreshKey, setRefreshKey] = useState(0);
   const [showTermsModal, setShowTermsModal] = useState(false);
   const [checkingTerms, setCheckingTerms] = useState(true);
+
+  const { data: session } = useSession()
 
   const refreshMap = () => setRefreshKey((prev) => prev + 1);
 
@@ -26,7 +29,8 @@ export default function HomePage() {
         }
         const res = await fetch('/api/user/accepted-terms');
         const data = await res.json();
-        if (!data.acceptedTerms) setShowTermsModal(true);
+        console.log(data.acceptedTerms)
+        setShowTermsModal(!data.acceptedTerms);
       } catch (e) {
         console.log(e);
         setShowTermsModal(true);
@@ -64,7 +68,8 @@ export default function HomePage() {
 
       <section
         aria-label={t('home.range')}
-        className="absolute bottom-4 right-4 bg-white p-3 rounded shadow-md flex items-center gap-2 z-[1000] text-black"
+        className="absolute right-4 bottom-[env(safe-area-inset-bottom,4rem)] bg-white p-3 rounded shadow-md flex items-center gap-2 z-[1000] text-black"
+
       >
         <label htmlFor="radius">{t('home.range')} (km):</label>
         <input
@@ -89,7 +94,7 @@ export default function HomePage() {
         </button>
       </section>
 
-      {showTermsModal && (
+      {showTermsModal && session && (
         <TermsModal onAccept={acceptTerms} onDecline={declineTerms} />
       )}
     </main>
