@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: "Trade and Play",
       images: [
         {
-          url: "../public/earth.jpg",
+          url: "../public/earth.jpeg",
           width: 1200,
           height: 630,
           alt: t('opengraphTitle'),

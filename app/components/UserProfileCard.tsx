@@ -56,7 +56,7 @@ export default function UserProfileCard({ user }: { user: User }) {
     <div className="flex items-center justify-between px-6 py-4 max-w-screen-xl mx-auto text-black">
       <div className="flex items-center gap-4">
         <Image
-          src={user.image ?? '/default-avatar.png'}
+          src={user.image ?? '../../public/book.jpeg'}
           alt={user.name ?? 'User avatar'}
           width={48}
           height={48}

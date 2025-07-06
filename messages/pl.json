@@ -68,12 +68,12 @@
       "success-edit": "Edytowano pomyślnie"
     },
     "root": {
-    "title": "Trade and Play | Darmowe ogłoszenia",
-    "description": "Lokalna mapa ogłoszeń, wymiany i sprzedaży. Projekt edukacyjny.",
-    "opengraphTitle": "Trade and Play | Ogłoszenia na mapie",
-    "opengraphDescription": "Znajdź ogłoszenia w swojej okolicy!",
-    "siteName": "Trade and Play",
-    "imageAlt": "Trade and Play"
+     "title": "Trade and Play | Ogłoszenia, wymiana książek i gier lokalnie na mapie",
+  "description": "Lokalna mapa ogłoszeń z funkcją wymiany książek i gier. Znajdź książki, gry i oferty w okolicy dzięki Leaflet i OpenStreetMap. Zaloguj się i dodaj ogłoszenie!",
+  "opengraphTitle": "Trade and Play | Ogłoszenia lokalne na mapie",
+  "opengraphDescription": "Dodawaj i przeglądaj lokalne ogłoszenia — książki, gry. Trade, play i znajdź oferty w Twojej okolicy.",
+  "siteName": "Trade and Play",
+  "imageAlt": "Mapa ogłoszeń - Trade and Play"
   },
   "user": {
     "profileTitle": "{name} | Trade and Play",
@@ -119,5 +119,10 @@
       "location": "Lokalizacja jest wymagana",
       "capacity": "Pojemność musi być liczbą"
     }
-  }
+  },
+    "not-found":{
+        "title": "Nie znaleziono strony",
+        "description": "Strona, której szukasz, mogła zostać usunięta lub nie istnieje.",
+        "back-button": "Wróć do strony głównej"
+      }
 }

@@ -19,7 +19,7 @@ const Navbar = async () => {
               height={32}
               priority
             />
-            <p className="hidden sm:block text-2xl font-extrabold tracking-tight">{t('title')}</p>
+            <h1 className="hidden sm:block text-2xl font-extrabold tracking-tight">{t('title')}</h1>
           </Link>
 
           {session && session.user && (

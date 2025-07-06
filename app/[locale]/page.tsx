@@ -46,6 +46,8 @@ export default function HomePage() {
       const res = await fetch('/api/user/accepted-terms', { method: 'POST' });
       if (res.ok) {
         setShowTermsModal(false);
+        
+        refreshMap()
         localStorage.removeItem('termsDeclined');
       } else {
         alert(`${t('listing.error')}`);

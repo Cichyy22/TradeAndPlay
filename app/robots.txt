@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /api/
+Disallow: /user/
+Allow: /
+
+Sitemap: https://trade-and-play.vercel.app/sitemap.xml

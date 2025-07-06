@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "postinstall": "prisma generate",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
@@ -22,6 +23,7 @@
     "next": "15.3.4",
     "next-auth": "^5.0.0-beta.29",
     "next-intl": "^4.3.4",
+    "next-sitemap": "^4.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-leaflet": "^5.0.0",

@@ -68,12 +68,12 @@
       "success-edit": "Edited successfully"
     },
      "root": {
-    "title": "Trade and Play | Free ads",
-    "description": "A local map for ads and trades. An educational project.",
-    "opengraphTitle": "Trade and Play | Classifieds on the map",
-    "opengraphDescription": "Find ads in your neighborhood!",
-    "siteName": "Trade and Play",
-    "imageAlt": "Trade and Play"
+     "title": "Trade and Play | Listings, Exchange, Books & Games on Local Map",
+  "description": "A local map for trading, playing, and listing books or games. Discover listings nearby using Leaflet and OpenStreetMap. Log in to post your trade or play offer!",
+  "opengraphTitle": "Trade and Play | Local Listings on Map",
+  "opengraphDescription": "Find or post listings in your area — games, books, trade. Explore nearby offers on a map. Powered by Leaflet and OpenStreetMap.",
+  "siteName": "Trade and Play",
+  "imageAlt": "Trade and Play listings map"
   },
   "user": {
     "profileTitle": "{name} | Trade and Play",
@@ -119,5 +119,10 @@
       "location": "Location is required",
       "capacity": "Capacity is number"
     }
-  }
+  },
+    "not-found":{
+        "title": "Page not found",
+        "description": "The page you are looking for might have been removed or does not exist.",
+        "back-button": "Go back home"
+      }
 }
