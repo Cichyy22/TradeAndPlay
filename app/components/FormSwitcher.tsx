@@ -5,6 +5,16 @@ import AddListingForm from './AddListingForm';
 import EventForm from './EventForm';
 import { useTranslations } from 'next-intl';
 
+interface ListingData {
+  id: string;
+  title: string;
+  description: string;
+  contact: string;
+  type: 'BOOK' | 'GAME';
+  lat?: number;
+  lng?: number;
+}
+
 export default function FormSwitcher({
   lat,
   lng,
@@ -13,7 +23,7 @@ export default function FormSwitcher({
 }: {
   lat?: number;
   lng?: number;
-  onAddListing: (data: unknown) => void;
+  onAddListing: (data: ListingData) => void;
   onAddEvent: () => void;
 }) {
   const [activeForm, setActiveForm] = useState<'listing' | 'event' | null>(null);

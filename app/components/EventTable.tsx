@@ -79,7 +79,7 @@ export default function EventsTable({ userId }: EventsTableProps) {
       toast.success(t('toast.success'), { position: 'bottom-left' });
       fetchEvents();
     } catch (error) {
-      toast.error(t('event.leave-error'), { position: 'bottom-left' });
+      toast.error(t('event.leave-error')+ error, { position: 'bottom-left' });
     }
   };
 
@@ -93,7 +93,7 @@ export default function EventsTable({ userId }: EventsTableProps) {
       toast.success(t('toast.success'), { position: 'bottom-left' });
       fetchEvents();
     } catch (error) {
-      toast.error(t('event.delete-error'), { position: 'bottom-left' });
+      toast.error(t('event.delete-error')+ error, { position: 'bottom-left' });
     }
   };
 
@@ -188,9 +188,12 @@ export default function EventsTable({ userId }: EventsTableProps) {
       )}
 
       {editingEvent && (
-        <EventForm
+       <EventForm
           isEdit
-          initialData={editingEvent}
+          initialData={{
+            ...editingEvent,
+            capacity: editingEvent.capacity ?? 0,  // domyślnie 0, albo inna wartość
+          }}
           onClose={() => setEditingEvent(null)}
           onSubmit={() => {
             setEditingEvent(null);

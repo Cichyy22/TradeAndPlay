@@ -4,10 +4,12 @@ import "./globals.css";
 
 import { headers } from 'next/headers';
 import { SessionProvider } from 'next-auth/react';
-import { Session } from 'next-auth';
+// import { Session } from 'next-auth';
 import { ToastContainer } from 'react-toastify';
 
 import { getTranslations } from "next-intl/server";
+
+import { auth } from "@/auth";
 
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -40,15 +42,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function RootLayout({
-  session,
   children,
 }: {
-  session: Session | null;
   children: React.ReactNode;
 }) {
   const headersList = headers();
   const pathname = (await headersList).get("x-invoke-path") || "";
   const locale = pathname.split("/")[1] || "en"; 
+  const session = await auth();
 
   return (
     <html lang={locale}>

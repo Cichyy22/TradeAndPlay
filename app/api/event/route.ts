@@ -63,11 +63,12 @@ export async function POST(req: NextRequest) {
       data: {
         ...validatedData,
         date: new Date(validatedData.date), 
-        organizerId: session?.user?.id,
+        organizerId: session?.user?.id ?? "",
       },
     });
     return NextResponse.json(event);
   } catch (error) {
+    console.log(error)
     return NextResponse.json({ error: 'Failed to create event' }, { status: 500 });
   }
 }

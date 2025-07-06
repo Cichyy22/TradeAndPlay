@@ -68,12 +68,16 @@ export default function ListingsTable({ userId }: { userId: string }) {
     }
   };
 
-  const handleUpdate = async (updatedListing: Partial<Listing> & { id: string }) => {
+ const handleUpdate = (updated: Partial<Listing>) => {
+  if (!editingListing) return;
+  const updatedWithId = { ...updated, id: editingListing.id };
+
+  (async () => {
     try {
-      const res = await fetch(`/api/listing/${updatedListing.id}`, {
+      const res = await fetch(`/api/listing/${updatedWithId.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedListing),
+        body: JSON.stringify(updatedWithId),
       });
       if (!res.ok) {
         const errorData = await res.json();
@@ -92,7 +96,8 @@ export default function ListingsTable({ userId }: { userId: string }) {
             position: 'bottom-left',
           });
     }
-  };
+  })();
+};
 
   return (
     <div className="space-y-4">

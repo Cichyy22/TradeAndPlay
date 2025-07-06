@@ -6,6 +6,17 @@ import { listingSchema } from '@/lib/schema';
 
 import { toast } from 'react-toastify';
 
+interface ListingData {
+  id: string;
+  title: string;
+  description: string;
+  contact: string;
+  type: 'BOOK' | 'GAME';
+  lat?: number;
+  lng?: number;
+}
+
+
 export default function AddListingForm({
   lat,
   lng,
@@ -13,7 +24,7 @@ export default function AddListingForm({
 }: {
   lat?: number;
   lng?: number;
-  onSubmit: (data: unknown) => void;
+  onSubmit: (data: ListingData) => void;
 }) {
   const t = useTranslations();
 

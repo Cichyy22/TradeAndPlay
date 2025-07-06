@@ -1,16 +1,15 @@
 import { auth } from '@/auth';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
-import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { prisma } from '@/prisma';
 
 export async function generateMetadata({
-  params,
+  params
 }: {
-  params: { id: string; locale: string };
-}): Promise<Metadata> {
-  const { id } = params;
+  params: Promise<{ id: string; locale: string }>
+}){
+  const { id } = await params;
   const t = await getTranslations();
   const user = await prisma.user.findUnique({
     where: { id },
@@ -37,12 +36,12 @@ export default async function UserProfileLayout({
   params,
 }: {
   children: ReactNode;
-  params: { id: string; locale: string };
+  params: Promise<{ id: string; locale: string }>;
 }) {
-  const { id } = params;
+  const { id } = await params;
   const session = await auth();
 
-  if (!session || session.userId !== id) {
+  if (!session || session.user?.id !== id) {
     return notFound();
   }
 

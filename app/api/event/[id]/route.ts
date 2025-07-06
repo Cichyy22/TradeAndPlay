@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/prisma';
 
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const session = await auth();
   const userId = session?.user?.id;
@@ -65,10 +65,10 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 }
 
 
-export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+export async function DELETE(_: Request, { params }: { params: Promise<{ id: string }> }) {
   const session = await auth();
   const userId = session?.user?.id;
-  const eventId = params.id;
+  const eventId = (await params).id;
 
   if (!userId) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

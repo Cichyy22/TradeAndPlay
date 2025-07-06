@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Listing } from '@prisma/client';
 import {useTranslations} from 'next-intl';
+import { Listing } from '../generated/prisma';
 
 interface ListingPopupContentProps {
   listing: Listing;

@@ -5,13 +5,15 @@ import { useEffect, useState } from 'react';
 import TermsModal from '@/app/components/TermsModal';
 import { useTranslations } from 'next-intl';
 
-interface User {
+type User = {
   id: string;
-  name: string;
+  name: string | null;
   email: string;
-  image: string;
-  createdAt: string;
-}
+  image: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+  acceptedTerms: boolean;
+};
 
 export default function UserProfileCard({ user }: { user: User }) {
   const [accepted, setAccepted] = useState<boolean | null>(null);
@@ -54,8 +56,8 @@ export default function UserProfileCard({ user }: { user: User }) {
     <div className="flex items-center justify-between px-6 py-4 max-w-screen-xl mx-auto text-black">
       <div className="flex items-center gap-4">
         <Image
-          src={user.image}
-          alt={user.name}
+          src={user.image ?? '/default-avatar.png'}
+          alt={user.name ?? 'User avatar'}
           width={48}
           height={48}
           className="rounded-full"

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from 'next/server';
 import { auth } from "@/auth";
 import { listingSchema } from '@/lib/schema'; 
@@ -46,7 +47,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-     if (session?.user?.acceptedTerms == false) {
+     if ((session.user as any).acceptedTerms == false) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 

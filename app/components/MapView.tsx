@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { MapContainer, TileLayer, useMapEvents, Marker, Popup, Circle } from 'react-leaflet';
@@ -217,9 +218,9 @@ const handleAddEvent = async () => {
 
 
 
-      {session && session?.user?.acceptedTerms == true && status == 'authenticated' && formPos && (
+      {session && (session.user as any).acceptedTerms == true && status == 'authenticated' && formPos && (
         <Marker icon={anotherIcon} position={[formPos.lat, formPos.lng]}>
-          <Popup onClose={() => setFormPos(null)}>
+          <Popup>
             <FormSwitcher
               lat={formPos.lat}
               lng={formPos.lng}
