@@ -2,7 +2,7 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Navbar from "@/app/components/Navbar";
-import "../globals.css";
+import "../../globals.css";
 
 export default async function LocaleLayout({
   children,

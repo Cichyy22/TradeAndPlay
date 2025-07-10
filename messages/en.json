@@ -3,7 +3,8 @@
     "title": "Trade and Play",
     "profile": "Profile",
     "log-out": "Log out",
-    "log-in": "Log in"
+    "log-in": "Log in",
+    "map": "Map"
   },
   "home": {
     "range": "Radius",
@@ -61,6 +62,7 @@
       "paragraph4": "Users' personal data is processed solely for the purposes necessary for the operation of the website and is not shared with third parties.",
       "paragraph5": "The user confirms that they understand the nature of the project and agrees to use the service in accordance with its intended purpose.",
       "paragraph6": "If you have any questions or concerns, please contact the project author.",
+      "paragraph7": "We use your location only with your permission to center the map and display relevant listings nearby. Your location is not stored or shared",
       "accept": "I Accept",
       "decline": "I Do Not Accept / Close Terms"
     },
@@ -133,5 +135,24 @@
           "step3": "In your profile tab, you can manage your listings and events.",
           "step4": "If you're unable to add a listing after accepting the terms, try refreshing the map or the page.",
           "close": "Close"
-        }
+        },
+    "info":{
+            "title": "About Trade and Play",
+            "intro": "Trade and Play is an educational map-based app that allows users to share listings and organize local events.",
+            "howWorks": {
+              "title": "How it works?",
+              "desc1": "Users can log in, accept the terms, and add listings to the map by right-clicking on a location. Without logging in, the user can view incomplete offers.",
+              "desc2": "Listings are only visible to people within a certain distance from their location. We use your location only with your permission to center the map and display relevant listings nearby. Your location is not stored or shared"
+            },
+            "features": {
+              "title": "Features",
+              "point1": "Add local listings (books, games, events).",
+              "point2": "Map with distance filter.",
+              "point3": "Manage your listings via your profile."
+            },
+            "whoFor": {
+              "title": "Who is it for?",
+              "desc": "For students, young people, and local communities who want to exchange goods or announce events."
+            }
+          }
 }

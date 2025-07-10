@@ -24,6 +24,7 @@ export default function TermsModal({ onAccept, onDecline }: TermsModalProps) {
           <p className="mt-4">{t('paragraph4')}</p>
           <p className="mt-4">{t('paragraph5')}</p>
           <p className="mt-4">{t('paragraph6')}</p>
+          <p className="mt-4">{t('paragraph7')}</p>
         </div>
 
         <div className="flex justify-end gap-3">

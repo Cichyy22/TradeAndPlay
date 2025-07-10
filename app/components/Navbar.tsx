@@ -19,8 +19,14 @@ const Navbar = async () => {
               height={32}
               priority
             />
-            <h1 className="hidden sm:block text-2xl font-extrabold tracking-tight">{t('title')}</h1>
+            <p className="hidden sm:block text-2xl font-extrabold tracking-tight">{t('title')}</p>
           </Link>
+          <Link
+                href={`/map`}
+                className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+              >
+                {t('map')}
+              </Link>
 
           
               <LanguageSwitcher/>

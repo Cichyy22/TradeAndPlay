@@ -3,7 +3,8 @@
     "title": "Trade and Play",
     "profile": "Profil",
     "log-out": "Wyloguj",
-    "log-in": "Zaloguj"
+    "log-in": "Zaloguj",
+    "map": "Mapa"
   },
    "home": {
     "range": "Zasięg",
@@ -61,6 +62,7 @@
     "paragraph4": "Dane osobowe użytkowników są przetwarzane wyłącznie w celach niezbędnych do działania strony i nie są udostępniane osobom trzecim.",
     "paragraph5": "Użytkownik potwierdza, że rozumie charakter projektu i wyraża zgodę na korzystanie z serwisu zgodnie z jego przeznaczeniem.",
     "paragraph6": "W razie pytań lub wątpliwości prosimy o kontakt z autorem projektu.",
+    "paragraph7": "Używamy Twojej lokalizacji tylko za Twoją zgodą, aby wyśrodkować mapę i wyświetlić odpowiednie ogłoszenia w pobliżu. Twoja lokalizacja nie jest przechowywana ani udostępniana.",
     "accept": "Akceptuję",
     "decline": "Nie zgadzam się / Wyłącz regulamin"
   },
@@ -133,5 +135,25 @@
             "step3": "W zakładce profilu możesz zarządzać swoimi ogłoszeniami i wydarzeniami.",
             "step4": "Jeśli po zaakceptowaniu regulaminu nie możesz dodać ogłoszenia, odśwież mapę lub stronę.",
             "close": "Zamknij"
+        },
+  "info": 
+      {
+        "title": "O aplikacji Trade and Play",
+        "intro": "Trade and Play to aplikacja stworzona na potrzeby nauki frameworka Nextjs, która pozwala użytkownikom dzielić się ogłoszeniami i organizować lokalne wydarzenia.",
+        "howWorks": {
+          "title": "Jak działa?",
+          "desc1": "Użytkownik może zalogować się, zaakceptować regulamin i dodawać ogłoszenia na mapie poprzez kliknięcie prawym przyciskiem myszy. Bez logowania Użytkownika może przeglądać nie pełne ogłoszenia.",
+          "desc2": "Ogłoszenia widoczne są tylko dla osób znajdujących się w określonej odległości od ich lokalizacji. Używamy Twojej lokalizacji tylko za Twoją zgodą, aby wyśrodkować mapę i wyświetlić odpowiednie ogłoszenia w pobliżu. Twoja lokalizacja nie jest przechowywana ani udostępniana."
+        },
+        "features": {
+          "title": "Funkcje",
+          "point1": "Dodawanie ogłoszeń lokalnych (książki, gry, wydarzenia).",
+          "point2": "Mapa z filtrem zasięgu.",
+          "point3": "Zarządzanie ogłoszeniami w profilu użytkownika."
+        },
+        "whoFor": {
+          "title": "Dla kogo?",
+          "desc": "Dla uczniów, studentów i mieszkańców lokalnych społeczności, którzy chcą się wymieniać lub informować o wydarzeniach."
         }
+      }
 }

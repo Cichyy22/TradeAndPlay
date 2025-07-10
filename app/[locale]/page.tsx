@@ -1,119 +1,29 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
-import TermsModal from '@/app/components/TermsModal';
-import { useSession } from "next-auth/react"
+import Navbar from '@/app/components/Navbar';
 
-import InstructionModal from '@/app/components/InstructionModal';
-
-const MapView = dynamic(() => import('@/app/components/MapView'), { ssr: false });
-
-export default function HomePage() {
-  const t = useTranslations();
-  const [distance, setDistance] = useState(5);
-  const [refreshKey, setRefreshKey] = useState(0);
-  const [showTermsModal, setShowTermsModal] = useState(false);
-  const [checkingTerms, setCheckingTerms] = useState(true);
-
-  const { data: session } = useSession()
-  const [showInstruction, setShowInstruction] = useState(false);
-
-
-  const refreshMap = () => setRefreshKey((prev) => prev + 1);
-
-  useEffect(() => {
-    async function checkAcceptedTerms() {
-      try {
-        const declined = localStorage.getItem('termsDeclined');
-        if (declined === 'true') {
-          setShowTermsModal(false);
-          return setCheckingTerms(false);
-        }
-        const res = await fetch('/api/user/accepted-terms');
-        const data = await res.json();
-        console.log(data.acceptedTerms)
-        setShowTermsModal(!data.acceptedTerms);
-      } catch (e) {
-        console.log(e);
-        setShowTermsModal(true);
-      } finally {
-        setCheckingTerms(false);
-      }
-    }
-    checkAcceptedTerms();
-  }, []);
-
-  const acceptTerms = async () => {
-    try {
-      const res = await fetch('/api/user/accepted-terms', { method: 'POST' });
-      if (res.ok) {
-        setShowTermsModal(false);
-        
-        refreshMap()
-        localStorage.removeItem('termsDeclined');
-      } else {
-        alert(`${t('listing.error')}`);
-      }
-    } catch {
-      alert(`${t('listing.error')}`);
-    }
-  };
-
-  const declineTerms = () => {
-    localStorage.setItem('termsDeclined', 'true');
-    setShowTermsModal(false);
-  };
-
-  if (checkingTerms) return <div>{t('listing.load')}</div>;
+export default function InfoPage() {
+  const t = useTranslations('info');
 
   return (
-    <main className="h-full w-full relative" role="main">
-      <MapView key={refreshKey} distanceKm={distance} />
-      <button
-        onClick={() => setShowInstruction(true)}
-        className="absolute top-4 right-4 z-[1001] bg-blue-600 text-white font-bold rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-blue-700"
-        title={t('home.instructions-title')}
-      >
-        i
-      </button>
-
-      <section
-        aria-label={t('home.range')}
-        className="absolute right-4 bottom-[env(safe-area-inset-bottom,4rem)] bg-white p-3 rounded shadow-md flex items-center gap-2 z-[1000] text-black"
-
-      >
-        <label htmlFor="radius">{t('home.range')} (km):</label>
-        <input
-          id="radius"
-          type="number"
-          min={1}
-          max={100}
-          value={distance}
-          onChange={(e) => setDistance(Number(e.target.value))}
-          className="border px-2 py-1 rounded w-20"
-          disabled={showTermsModal}
-        />
-
-        <button
-          onClick={refreshMap}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded"
-          title={t('home.refresh')}
-          type="button"
-          disabled={showTermsModal}
-        >
-          {t('home.refresh')}
-        </button>
-      </section>
-
-      {showTermsModal && session && (
-        <TermsModal onAccept={acceptTerms} onDecline={declineTerms} />
-      )}
-
-      {showInstruction && (
-          <InstructionModal onClose={() => setShowInstruction(false)} />
-        )}
-    </main>
+    <>
+     <Navbar />
+      <main className="max-w-3xl mx-auto p-6 space-y-6 text-gray-800">
+        <h1 className="text-4xl font-bold">{t('title')}</h1>
+        <p>{t('intro')}</p>
+        <section className="space-y-4">
+          <h2 className="text-2xl font-semibold">{t('howWorks.title')}</h2>
+          <p>{t('howWorks.desc1')}</p>
+          <p>{t('howWorks.desc2')}</p>
+        </section>
+        <section className="space-y-4">
+          <h2 className="text-2xl font-semibold">{t('features.title')}</h2>
+          <ul className="list-disc list-inside">
+            <li>{t('features.point1')}</li>
+            <li>{t('features.point2')}</li>
+            <li>{t('features.point3')}</li>
+          </ul>
+        </section>
+      </main>
+    </>
   );
 }
