@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 import { getTranslations } from 'next-intl/server';
 import { prisma } from '@/prisma';
+import {NextIntlClientProvider} from 'next-intl';
 
 export async function generateMetadata({
   params
@@ -53,5 +54,5 @@ export default async function UserProfileLayout({
     return notFound();
   }
 
-  return <>{children}</>;
+  return <><NextIntlClientProvider>{children}</NextIntlClientProvider></>;
 }
