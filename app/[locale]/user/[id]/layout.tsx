@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import { getTranslations } from 'next-intl/server';
 import { prisma } from '@/prisma';
 import {NextIntlClientProvider} from 'next-intl';
+import Navbar from "@/app/components/Navbar";
 
 export async function generateMetadata({
   params
@@ -54,5 +55,13 @@ export default async function UserProfileLayout({
     return notFound();
   }
 
-  return <><NextIntlClientProvider>{children}</NextIntlClientProvider></>;
+  return <><NextIntlClientProvider>
+    <div className="h-screen w-screen flex flex-col overflow-hidden">
+        <div className="h-12 shrink-0">
+          <Navbar />
+        </div>
+        <main className="flex-1 overflow-hidden">
+          {children}
+        </main>
+      </div></NextIntlClientProvider></>;
 }
